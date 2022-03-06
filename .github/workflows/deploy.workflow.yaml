@@ -9,3 +9,12 @@ jobs:
         with:
           node-version: '13'
       - run: npm install # [E]
+      - run: npm run build # [F]
+      - uses: stefanzweifel/git-auto-commit-action@v4 # [G]
+        with:
+          commit_message: Automated publish
+      - name: Deploy CI/CD
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: build # The folder the action should deploy.          
