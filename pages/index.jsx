@@ -1,4 +1,4 @@
-import Image from 'next/image'
+
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
@@ -6,6 +6,8 @@ import Link from 'next/link'
 import moment from 'moment';
 const DATE_FORMAT = 'MMMM D, YYYY';
 import _ from 'underscore';
+
+
 
 
 export default function Home({ posts }) {
@@ -34,7 +36,7 @@ export default function Home({ posts }) {
                 </div>
               </div>
               <div className="col-md-4 m-auto">
-                <Image
+                <img
                   src={post.frontMatter.thumbnailUrl}
                   className="img-fluid mt-1 rounded-start"
                   alt="thumbnail"

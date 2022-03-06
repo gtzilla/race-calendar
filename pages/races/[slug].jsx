@@ -5,7 +5,6 @@ import path from 'path'
 import matter from 'gray-matter'
 import Button from '../../components/Button.jsx'
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import Image from 'next/image'
 import _ from 'underscore';
 
 
@@ -21,7 +20,7 @@ const PostPage = ({
       <h1>{title}</h1>
       {coverImage?
         <a href={flyerUrl} rel="noreferrer"  target="new">
-          <Image
+          <img
             src={coverImage}
             className="img-fluid mt-1 rounded-start"
             alt="cover-image"
