@@ -9,19 +9,33 @@ import Image from 'next/image'
 import _ from 'underscore';
 
 
-const PostPage = ({ frontMatter: { title, coverImage }, mdxSource }) => {
+const PostPage = ({ 
+  frontMatter: { 
+    title, 
+    coverImage, 
+    flyerUrl,
+    host
+  }, mdxSource }) => {
   return (
     <div className="mt-4">
       <h1>{title}</h1>
-      {coverImage?<Image
-        src={coverImage}
-        className="img-fluid mt-1 rounded-start"
-        alt="cover-image"
-        width={700}
-        height={700}
-        objectFit="cover"
-      /> :null}     
+      {coverImage?
+        <a href={flyerUrl}  target="_blank">
+          <Image
+            src={coverImage}
+            className="img-fluid mt-1 rounded-start"
+            alt="cover-image"
+            width={700}
+            height={700}
+            objectFit="cover"
+          />
+      </a> :null}     
       <MDXRemote {...mdxSource} components={{ Button, SyntaxHighlighter }} />
+      <div> 
+        <a href={flyerUrl} target="_blank">See flyer</a> 
+        &nbsp; | &nbsp;
+        <a href={'https://www.instagram.com/' + host}>Contact</a>
+      </div>
     </div>
   )
 }

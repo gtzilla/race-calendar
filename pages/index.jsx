@@ -14,13 +14,14 @@ export default function Home({ posts }) {
   const futurePostsOnly = _.filter(posts, post=>{
     const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
     return parsedDate.isSameOrAfter(today, 'day')
-  })
-  const testFirst = _.first(posts);
-  const parsedDate = moment(testFirst.frontMatter.date, [DATE_FORMAT]);
-  console.log( testFirst.frontMatter.date, parsedDate.format('YYYY-MM-DD'))
+  });
+
   return (
     <div className="mt-5">
-      {futurePostsOnly.map((post, index) => (
+      {_.chain(futurePostsOnly).sortBy(post=>{
+        const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
+        return parsedDate.unix();
+      }).map((post, index) => (
         <Link href={'/races/' + post.slug} passHref key={index}>
           <div className="card mb-3 pointer" style={{ maxWidth: '540px' }}>
             <div className="row g-0">
@@ -46,7 +47,7 @@ export default function Home({ posts }) {
             </div>
           </div>
         </Link>
-      ))}
+      )).value()}
     </div>
   )
 }
