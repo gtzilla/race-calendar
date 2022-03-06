@@ -12,16 +12,16 @@ import _ from 'underscore';
 
 export default function Home({ posts }) {
   const today = moment().startOf('day');
-
+  const filteredAndSorted = _.chain(posts).filter(post=>{
+    const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
+    return parsedDate.isSameOrAfter(today, 'day')        
+  }).sortBy(post=>{
+    const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
+    return parsedDate.unix();
+  }).value();
   return (
     <div className="mt-5">
-      {_.chain(posts).filter(post=>{
-        const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
-        return parsedDate.isSameOrAfter(today, 'day')        
-      }).sortBy(post=>{
-        const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
-        return parsedDate.unix();
-      }).map((post, index) => (
+      {filteredAndSorted.length ? filteredAndSorted.map((post, index) => (
         <Link href={'/races/' + post.slug} passHref key={index}>
           <div className="card mb-3 pointer" style={{ maxWidth: '540px' }}>
             <div className="row g-0">
@@ -46,7 +46,15 @@ export default function Home({ posts }) {
             </div>
           </div>
         </Link>
-      )).value()}
+      )):
+      <div>
+        <h1>No Upcoming Alleycats</h1>   
+        <p>Let's change that together. 
+          Share event details with <a href="https://instagram.com/brokeshutter/">brokeshutter@ig</a> to 
+          see your race published here.
+        </p>
+      </div>
+    }
     </div>
   )
 }

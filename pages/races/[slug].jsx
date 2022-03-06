@@ -12,7 +12,8 @@ const PostPage = ({
     title, 
     coverImage, 
     flyerUrl,
-    host
+    host,
+    mapsLink
   }, mdxSource }) => {
   return (
     <div className="mt-4">
@@ -33,6 +34,8 @@ const PostPage = ({
         &nbsp; | &nbsp;
         <a href={'https://www.instagram.com/' + host}>Contact {host}@ig</a>
       </div>
+      {!mapsLink ? null : 
+        <a rel="noreferrer" target="new" href="https://goo.gl/maps/qwzHGs5SPdo3LiEd6">Start Location</a>}
     </div>
   )
 }

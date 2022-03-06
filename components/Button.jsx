@@ -1,3 +1,5 @@
+
+// reference primarily
 const Button = ({ text }) => {
   return (
     <button
