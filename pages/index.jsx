@@ -9,7 +9,6 @@ import _ from 'underscore';
 
 
 export default function Home({ posts }) {
-  console.log("posts",posts)
   const today = moment().startOf('day');
   const futurePostsOnly = _.filter(posts, post=>{
     const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);

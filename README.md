@@ -43,3 +43,10 @@ https://blog.jetbrains.com/webstorm/2021/10/building-a-blog-with-next-js-and-mdx
 
 https://www.suhanwijaya.com/posts/use-github-actions-deploy-nextjs-ssg-site
 
+
+
+## Scraping with Instagram
+
+https://www.npmjs.com/package/scraper-instagram
+
+Needs a session id
