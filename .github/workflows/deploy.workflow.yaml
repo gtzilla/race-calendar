@@ -8,6 +8,10 @@ jobs:
       - uses: actions/setup-node@v2 # [D]
         with:
           node-version: '16.6.2'
+      - uses: actions/cache@v2 # [H]
+        with:
+          path: ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}          
       - run: npm install # [E]
       - run: npm run build # [F]
       - uses: stefanzweifel/git-auto-commit-action@v4 # [G]
