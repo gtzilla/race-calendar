@@ -1,8 +1,8 @@
-
+import Image from 'next/image'
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-// import Link from 'next/link'
+import Link from 'next/link'
 import moment from 'moment';
 const DATE_FORMAT = 'MMMM D, YYYY';
 import _ from 'underscore';
@@ -23,7 +23,7 @@ export default function Home({ posts }) {
         const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
         return parsedDate.unix();
       }).map((post, index) => (
-        <a href={'/races/' + post.slug} passHref key={index}>
+        <Link href={'/races/' + post.slug} passHref key={index}>
           <div className="card mb-3 pointer" style={{ maxWidth: '540px' }}>
             <div className="row g-0">
               <div className="col-md-8">
@@ -47,7 +47,7 @@ export default function Home({ posts }) {
               </div>
             </div>
           </div>
-        </a>
+        </Link>
       )).value()}
     </div>
   )
