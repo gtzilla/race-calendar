@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v2 # [C]
       - uses: actions/setup-node@v2 # [D]
         with:
-          node-version: '13'
+          node-version: '16.6.2'
       - run: npm install # [E]
       - run: npm run build # [F]
       - uses: stefanzweifel/git-auto-commit-action@v4 # [G]
