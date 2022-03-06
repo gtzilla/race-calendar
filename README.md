@@ -39,14 +39,14 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 https://blog.jetbrains.com/webstorm/2021/10/building-a-blog-with-next-js-and-mdx/
 
 
-## Deploying on Github Actions
+## Deploying on Github Actions, references
 
-https://www.suhanwijaya.com/posts/use-github-actions-deploy-nextjs-ssg-site
+1. https://www.suhanwijaya.com/posts/use-github-actions-deploy-nextjs-ssg-site
+2. https://docs.github.com/en/actions/quickstart
 
 
 
 ## Scraping with Instagram
 
-https://www.npmjs.com/package/scraper-instagram
-
-Needs a session id
+TODO:  https://www.npmjs.com/package/scraper-instagram
+Needs a session id. slightly less manual..
