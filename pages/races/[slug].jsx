@@ -26,7 +26,6 @@ const PostPage = ({
             alt="cover-image"
             width={700}
             height={700}
-            objectFit="cover"
           />
       </a> :null}     
       <MDXRemote {...mdxSource} components={{ Button, SyntaxHighlighter }} />

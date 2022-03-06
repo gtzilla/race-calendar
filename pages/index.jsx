@@ -12,14 +12,13 @@ import _ from 'underscore';
 
 export default function Home({ posts }) {
   const today = moment().startOf('day');
-  const futurePostsOnly = _.filter(posts, post=>{
-    const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
-    return parsedDate.isSameOrAfter(today, 'day')
-  });
 
   return (
     <div className="mt-5">
-      {_.chain(futurePostsOnly).sortBy(post=>{
+      {_.chain(posts).filter(post=>{
+        const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
+        return parsedDate.isSameOrAfter(today, 'day')        
+      }).sortBy(post=>{
         const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
         return parsedDate.unix();
       }).map((post, index) => (
@@ -42,7 +41,6 @@ export default function Home({ posts }) {
                   alt="thumbnail"
                   width={500}
                   height={500}
-                  objectFit="cover"
                 />
               </div>
             </div>
