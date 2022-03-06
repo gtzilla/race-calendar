@@ -61,6 +61,7 @@ export const getStaticProps = async () => {
       slug: filename.split('.')[0]
     }
   })
+  console.log("getStaticProps() posts",posts);
   return {
     props: {
       posts
