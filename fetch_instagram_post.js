@@ -1,5 +1,16 @@
 // import ig from 'instagram-scraping'
 import Insta from 'scraper-instagram';
+import { Command } from 'commander';
+
+
+const program = new Command();
+program
+  .version('0.0.2')
+  .usage('./npx node fetch_instragram_post.js -u "https://www.instagram.com/p/CWH6NmyMAtT/"')
+  .option('-s, --session-id <session_id>', 'Instagram WEB Cookie sessionid', null)
+  .option('-u, --url <instagram_url>', 'An Instagram Post', null);
+program.parse(process.argv);
+
 const InstaClient = new Insta();
 InstaClient.authBySessionId('264631377%3ADyfQehWA7z76ZZ%3A3')
             .then(account => console.log(account))
@@ -12,11 +23,11 @@ InstaClient.authBySessionId('264631377%3ADyfQehWA7z76ZZ%3A3')
 // });
 
 // import cheerio from 'cheerio'
-// import { Command } from 'commander';
+
 // import got from 'got';
 // import _ from 'underscore';
 
-// // const { Command } = commander;
+
 // const program = new Command();
 // program
 //   .version('0.0.2')
