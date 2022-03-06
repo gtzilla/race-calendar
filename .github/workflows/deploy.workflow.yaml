@@ -2,7 +2,7 @@ name: deploy-workflow
 on: [push] # [A]
 jobs:
   deploy-job:
-    runs-on: ubuntu-latest # [B]
+    runs-on:  macos-latest # [B]
     steps:
       - uses: actions/checkout@v2 # [C]
       - uses: actions/setup-node@v2 # [D]
