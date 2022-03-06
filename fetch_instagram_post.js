@@ -1,5 +1,6 @@
+import { instagram } from 'instagram-scraper-api';
 // import ig from 'instagram-scraping'
-import Insta from 'scraper-instagram';
+// import Insta from 'scraper-instagram';
 import { Command } from 'commander';
 
 
@@ -11,19 +12,34 @@ program
   .option('-u, --url <instagram_url>', 'An Instagram Post', null);
 program.parse(process.argv);
 
-const InstaClient = new Insta();
-InstaClient.authBySessionId('264631377%3ADyfQehWA7z76ZZ%3A3')
-            .then(account => console.log(account))
-            .catch(err => console.error(err));
 
 
-// using shortcode for scraping comment 
-// ig.scrapeComment('CWH6NmyMAtT').then((result) => {
-//   console.dir(result);
-// });
+
+instagram
+  .user('willsmith')
+  .then((user) => console.log(user))
+  .catch((err) => console.error(err));
+
+// const InstaClient = new Insta();
+// const shortcode = 'CWH6NmyMAtT';
+
+// (async ()=>{
+//   await InstaClient.authBySessionId('264631377%3ADyfQehWA7z76ZZ%3A3')
+//             .then(account => {
+//               console.log(account)
+//             })
+//             .catch(err => console.error(err))
+//   await InstaClient.fullPost(shortcode)
+//             .then(post => console.log(post))
+//             .catch(err => console.error(err));  
+// })();
+            
+
+
+// break up the url
+
 
 // import cheerio from 'cheerio'
-
 // import got from 'got';
 // import _ from 'underscore';
 

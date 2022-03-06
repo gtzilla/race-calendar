@@ -31,7 +31,7 @@ const PostPage = ({
       <div> 
         <a href={flyerUrl} rel="noreferrer" target="new">See flyer</a> 
         &nbsp; | &nbsp;
-        <a href={'https://www.instagram.com/' + host}>Contact</a>
+        <a href={'https://www.instagram.com/' + host}>Contact {host}@ig</a>
       </div>
     </div>
   )
