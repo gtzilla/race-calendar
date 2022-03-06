@@ -49,7 +49,7 @@ export default function Home({ posts }) {
       )):
       <div>
         <h1>No Upcoming Alleycats</h1>   
-        <p>Let's change that together. 
+        <p>Let&#39;s change that together. 
           Share event details with <a href="https://instagram.com/brokeshutter/">brokeshutter@ig</a> to 
           see your race published here.
         </p>
