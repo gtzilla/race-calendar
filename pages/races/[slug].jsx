@@ -4,7 +4,6 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Button from '../../components/Button.jsx'
-import SyntaxHighlighter from 'react-syntax-highlighter'
 import _ from 'underscore';
 
 
@@ -28,7 +27,7 @@ const PostPage = ({
             height={700}
           />
       </a> :null}     
-      <MDXRemote {...mdxSource} components={{ Button, SyntaxHighlighter }} />
+      <MDXRemote {...mdxSource} components={{ Button }} />
       <div> 
         <a href={flyerUrl} rel="noreferrer" target="new">See flyer</a> 
         &nbsp; | &nbsp;

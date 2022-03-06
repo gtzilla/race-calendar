@@ -48,5 +48,7 @@ https://blog.jetbrains.com/webstorm/2021/10/building-a-blog-with-next-js-and-mdx
 
 ## Scraping with Instagram
 
+https://git.kaki87.net/KaKi87/ig-scraper
+
 TODO:  https://www.npmjs.com/package/scraper-instagram
 Needs a session id. slightly less manual..
