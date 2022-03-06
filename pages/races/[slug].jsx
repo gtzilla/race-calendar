@@ -20,7 +20,7 @@ const PostPage = ({
     <div className="mt-4">
       <h1>{title}</h1>
       {coverImage?
-        <a href={flyerUrl}  target="_blank">
+        <a href={flyerUrl} rel="noreferrer"  target="new">
           <Image
             src={coverImage}
             className="img-fluid mt-1 rounded-start"
@@ -32,7 +32,7 @@ const PostPage = ({
       </a> :null}     
       <MDXRemote {...mdxSource} components={{ Button, SyntaxHighlighter }} />
       <div> 
-        <a href={flyerUrl} target="_blank">See flyer</a> 
+        <a href={flyerUrl} rel="noreferrer" target="new">See flyer</a> 
         &nbsp; | &nbsp;
         <a href={'https://www.instagram.com/' + host}>Contact</a>
       </div>
