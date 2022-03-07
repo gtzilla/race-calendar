@@ -2,7 +2,7 @@
 
 .calendar-container-box {
 	border: 1px solid #efefef;
-	margin: 3px 0 30px;
+	margin: 0px 0 30px;
 }
 .calendar-container-header {
 	display: grid;
@@ -13,7 +13,12 @@
 	font-size: 12px;
 	border-bottom: 1px solid #efefef;
 }
+.calendar-headline-box {
+	display: flex;
+	padding: 20px 0 0;
+}
 .calendar-container-header li {
+	text-align: right;
 }
 
 .calendar-container-body {
@@ -26,10 +31,31 @@
 .calendar-container-body li {
 	border-right: 1px solid #efefef;
 	color: #bbb;
+	padding: 4px;
+	font-size: 0.9rem;
+	text-align: center;
 }
 .calendar-container-body li .current-month {
 	color: #666;
 }
 .calendar-container-body li:nth-child(7n) {
 	border-right: none;
+}
+.active-event-on-date {
+	background-color: #53aff4;
+		
+}
+.calendar-container-body li.active-event-on-date .current-month {
+	color: white;
+}
+
+.calendar-back-next-controls-box {
+	list-style: none;
+	display: flex;
+	margin-left: auto;
+	margin-top: 8px;
+}
+.calendar-back-next-controls-box li {
+	/*display: inline;*/
+	margin-left: 10px;
 }

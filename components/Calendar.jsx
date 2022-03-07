@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import _ from 'underscore'
+import _ from 'underscore';
+import Link from 'next/link';
 
 const dayNames = [
   'Sunday',
@@ -43,6 +44,9 @@ export default class Calendar extends React.PureComponent {
   }
 
   render() {
+    const eventsAndUrls = this.props.events;
+    const datesHashMap = _.object(_.pluck(eventsAndUrls, 'eventDate'), eventsAndUrls);
+    // console.log("datesHashMap",datesHashMap)    
     console.log(
       "this.props.startDate", 
       this.props.startDate,
@@ -50,6 +54,7 @@ export default class Calendar extends React.PureComponent {
       this.props.today,
       "events",
       this.props.events);
+
     const today = moment();
     const displayActive = moment(this.state.calendarActiveDate || this.props.startDate, ['YYYY-MM-DD']) 
     const monthStart = moment(displayActive).startOf('month').startOf('day')
@@ -57,7 +62,6 @@ export default class Calendar extends React.PureComponent {
     const monthEnd = moment(displayActive).endOf('month').endOf('day');
     const endMonthWeek = moment(monthEnd).endOf('month').endOf('week');
     const active = moment(weekStart);
-    
     const diff = monthEnd.diff(monthStart, 'days')
     const days = [];
     while(active.isBefore(endMonthWeek)) {
@@ -66,28 +70,44 @@ export default class Calendar extends React.PureComponent {
     }
     const titleHeader = today.isSame(monthStart, 'year') 
       ? monthStart.format('MMMM')
-      : monthStart.format('MMMM, YYYY')
+      : monthStart.format('MMMM, YYYY');
     return (
       <>
-      <h3>{titleHeader}</h3>
-      <ul className='calendar-back-next-controls-box'>
-        <li onClick={this.onClickBack.bind(this)}>Back</li>
-        <li onClick={this.onClickNext.bind(this)}>Next</li>
-      </ul>
+      <div className="calendar-headline-box">
+        <h3>{titleHeader}</h3>
+        <ul className='calendar-back-next-controls-box'>
+          <li onClick={this.onClickBack.bind(this)}>Back</li>
+          <li onClick={this.onClickNext.bind(this)}>Next</li>
+        </ul>
+      </div>
       <div className='calendar-container-box'>
         <ul className='calendar-container-header'>
           {dayNames.map(name=>{
-            return <li key={name}>{name}</li>
+            return <li key={name}>{name.substring(0,3)}</li>
           })}
         </ul>
         <ul className='calendar-container-body'>
         {days.map(day=>{
           const dayClass = day.isSame(monthStart, 'month') ? 'current-month' : ''
-          return (
-            <li key={day.format('YYYY-MM-DD')}>
-              <span className={dayClass}>{day.format('DD')}</span>
-            </li>
-            )
+          const formatted =day.format('YYYY-MM-DD')
+          const hasEvent = _.has(datesHashMap, formatted)
+          if(!hasEvent) {
+            return (
+              <li key={formatted}>
+                <span className={dayClass}>{day.format('DD')}</span>
+              </li>
+              )            
+          } else {
+            return (
+              <li key={formatted} 
+                  className='active-event-on-date'>
+                <Link href={datesHashMap[formatted].path}>
+                  <span className={dayClass}>{day.format('DD')}</span>
+                </Link>
+              </li>
+              )            
+          }
+
         })}
         </ul>
       </div>
