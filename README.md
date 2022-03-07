@@ -89,3 +89,8 @@ As of 3/6/2022 this is 100% manual. The exact steps followed are below. It assum
 10. Right click "Save Image As..."
 11. Save the image with the announced date and a very short name. Example 3-12-2022-wallst-alleycat.jpeg into the `./public` folder
 12. Correctly reference this image from the frontmatter YAML block in the new post.
+
+
+#### TODO 
+
+The build process is a little gross in that you sometimes need to "git pull". That's not ideal and would be better removed. _might_ be happening because of how the github pages deploy plugin is working. "JamesIves/github-pages-deploy-action@v4.2.5"

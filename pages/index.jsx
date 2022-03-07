@@ -8,17 +8,19 @@ const DATE_FORMAT = 'MMMM D, YYYY';
 import _ from 'underscore';
 
 
-
-
-export default function Home({ posts }) {
+function filterFutureForward(posts) {
   const today = moment().startOf('day');
-  const filteredAndSorted = _.chain(posts).filter(post=>{
+  return _.chain(posts).filter(post=>{
     const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
     return parsedDate.isSameOrAfter(today, 'day')        
   }).sortBy(post=>{
     const parsedDate = moment(post.frontMatter.date, [DATE_FORMAT]);
     return parsedDate.unix();
-  }).value();
+  }).value();  
+}
+
+export default function Home({ posts }) {
+  const filteredAndSorted = filterFutureForward(posts);
   return (
     <div className="mt-5">
       {filteredAndSorted.length ? filteredAndSorted.map((post, index) => (
@@ -46,7 +48,7 @@ export default function Home({ posts }) {
             </div>
           </div>
         </Link>
-      )):
+      )) :
       <div>
         <h1>No Upcoming Alleycats</h1>   
         <p>Let&#39;s change that together. 
@@ -69,7 +71,6 @@ export const getStaticProps = async () => {
       slug: filename.split('.')[0]
     }
   })
-  console.log("getStaticProps() posts",posts);
   return {
     props: {
       posts

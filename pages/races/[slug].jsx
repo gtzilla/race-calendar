@@ -34,8 +34,10 @@ const PostPage = ({
         &nbsp; | &nbsp;
         <a href={'https://www.instagram.com/' + host}>Contact {host}@ig</a>
       </div>
-      {!mapsLink ? null : 
-        <a rel="noreferrer" target="new" href="https://goo.gl/maps/qwzHGs5SPdo3LiEd6">Start Location</a>}
+      {
+        !mapsLink ? null : 
+        <p><a rel="noreferrer" target="new" href="https://goo.gl/maps/qwzHGs5SPdo3LiEd6">Start Location</a></p>
+      }
     </div>
   )
 }
@@ -56,6 +58,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params: { slug } }) => {
   const markdownWithMeta = fs.readFileSync(path.join('posts',
     slug + '.mdx'), 'utf-8')
+  console.log("matter(markdownWithMeta)", matter(markdownWithMeta))
   const { data: frontMatter, content } = matter(markdownWithMeta)
   const mdxSource = await serialize(content)
   return {
