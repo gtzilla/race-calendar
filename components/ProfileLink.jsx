@@ -28,7 +28,7 @@ export default class ProfileLink extends React.PureComponent {
   }
   componentDidMount() {
     this.setState({
-      isMobile: navigator.userAgentData.mobile,
+      isMobile: navigator.userAgentData?.mobile,
       iOS: iOS()
     });
   }
