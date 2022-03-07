@@ -17,6 +17,11 @@ function iOS() {
 export default class ProfileLink extends React.PureComponent {
   static get propTypes() {
     return {
+      username:()=>{}
+    }
+  }
+  static get defaultProps() {
+    return {
       username:null
     }
   }

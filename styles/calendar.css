@@ -2,6 +2,7 @@
 
 .calendar-container-box {
 	border: 1px solid #efefef;
+	margin: 3px 0 30px;
 }
 .calendar-container-header {
 	display: grid;
@@ -24,6 +25,10 @@
 }
 .calendar-container-body li {
 	border-right: 1px solid #efefef;
+	color: #bbb;
+}
+.calendar-container-body li .current-month {
+	color: #666;
 }
 .calendar-container-body li:nth-child(7n) {
 	border-right: none;

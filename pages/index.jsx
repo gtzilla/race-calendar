@@ -22,6 +22,12 @@ function filterFutureForward(posts) {
 
 export default function Home({ posts }) {
   const filteredAndSorted = filterFutureForward(posts);
+  const eventsAndUrls = filteredAndSorted.map(post=>{
+    return {
+      eventDate:moment(post?.frontMatter?.date, [DATE_FORMAT]).format('YYYY-MM-DD'),
+      path:'/races/' + post.slug
+    }
+  });
   return (
     <>
     <div className="mt-5">
@@ -60,7 +66,12 @@ export default function Home({ posts }) {
       </div>
     }
     </div>
-    <Calendar startMonth='3' />
+    <Calendar 
+      startDate={moment().format('YYYY-MM-DD')}
+      today={moment().format('YYYY-MM-DD')}
+      events={eventsAndUrls}
+       />
+      
     </>
   )
 }
