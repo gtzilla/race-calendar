@@ -28,7 +28,6 @@ export default class ProfileLink extends React.PureComponent {
   }
   componentDidMount() {
     this.setState({
-      isMobile: navigator.userAgentData?.mobile,
       iOS: iOS()
     });
   }
@@ -36,7 +35,7 @@ export default class ProfileLink extends React.PureComponent {
     const isMobile = this.state.isMobile;
     const username = this.props.username;
     let _href = 'https://instagram.com/' + username;
-    if(isMobile && this.state.iOS) {
+    if(this.state.iOS) {
       _href = 'instagram://user?username=' + username
     }
     return (
