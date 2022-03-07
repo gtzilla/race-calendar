@@ -1,5 +1,7 @@
 import '../styles/globals.css'
 import '../styles/bootstrap.min.css'
+import '../styles/calendar.css'
+
 
 import Nav from '../components/Nav'
 import Head from 'next/head'

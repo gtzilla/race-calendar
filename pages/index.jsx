@@ -6,6 +6,7 @@ import Link from 'next/link'
 import moment from 'moment';
 const DATE_FORMAT = 'MMMM D, YYYY';
 import _ from 'underscore';
+import Calendar from '../components/Calendar';
 
 
 function filterFutureForward(posts) {
@@ -22,6 +23,7 @@ function filterFutureForward(posts) {
 export default function Home({ posts }) {
   const filteredAndSorted = filterFutureForward(posts);
   return (
+    <>
     <div className="mt-5">
       {filteredAndSorted.length ? filteredAndSorted.map((post, index) => (
         <Link href={'/races/' + post.slug} passHref key={index}>
@@ -58,6 +60,8 @@ export default function Home({ posts }) {
       </div>
     }
     </div>
+    <Calendar startMonth='3' />
+    </>
   )
 }
 

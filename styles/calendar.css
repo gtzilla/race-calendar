@@ -1,0 +1,30 @@
+
+
+.calendar-container-box {
+	border: 1px solid #efefef;
+}
+.calendar-container-header {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	font-size: 12px;
+	border-bottom: 1px solid #efefef;
+}
+.calendar-container-header li {
+}
+
+.calendar-container-body {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.calendar-container-body li {
+	border-right: 1px solid #efefef;
+}
+.calendar-container-body li:nth-child(7n) {
+	border-right: none;
+}
