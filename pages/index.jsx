@@ -71,8 +71,13 @@ export default function Home({ posts }) {
       today={moment().format('YYYY-MM-DD')}
       events={eventsAndUrls}
        />
-      
+   <div className="text-center hosting-call-to-action-homepage">
+     <Link href="/about" passHref>
+      <h2>Hosting an Alleycat?</h2>
+     </Link>
+   </div>
     </>
+
   )
 }
 

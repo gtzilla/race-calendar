@@ -18,3 +18,8 @@ a {
 .pointer {
   cursor: pointer;
 }
+
+.hosting-call-to-action-homepage {
+  color: #E6A817;
+  cursor: pointer;
+}
