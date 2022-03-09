@@ -75,7 +75,7 @@ The race-calendar is date aware. It will hide / drop events that occured in the 
 
 ### Capturing a Race Flyer
 
-As of 3/6/2022 this is 100% manual. The exact steps followed are below. It assumes you have an instagram account and are currently logged into it in Chrome web browser.
+As of 3/6/2022 this is 100% manual. The exact steps followed are below. It assumes you have an instagram account and are currently logged into it in Chrome web browser. A puppeteer based solution is in the works.
 
 1. Open the post URL in Chrome web browser
 2. Example post URL https://www.instagram.com/p/CWH6NmyMAtT/
@@ -91,6 +91,3 @@ As of 3/6/2022 this is 100% manual. The exact steps followed are below. It assum
 12. Correctly reference this image from the frontmatter YAML block in the new post.
 
 
-#### TODO 
-
-The build process is a little gross in that you sometimes need to "git pull". That's not ideal and would be better removed. _might_ be happening because of how the github pages deploy plugin is working. "JamesIves/github-pages-deploy-action@v4.2.5"
