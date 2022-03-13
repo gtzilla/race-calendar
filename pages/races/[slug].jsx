@@ -10,14 +10,17 @@ import _ from 'underscore';
 const PostPage = ({ 
   frontMatter: { 
     title, 
+    date,
     coverImage, 
     flyerUrl,
     host,
-    mapsLink
+    mapsLink,
+    tags
   }, mdxSource }) => {
   return (
     <div className="mt-4">
       <h1>{title}</h1>
+      <div><span className="text-muted">{date}</span></div>
       {coverImage?
         <a href={flyerUrl} rel="noreferrer"  target="new">
           <img
@@ -29,14 +32,19 @@ const PostPage = ({
           />
       </a> :null}     
       <MDXRemote {...mdxSource} components={{ Button }} />
+
       <div> 
         <a href={flyerUrl} rel="noreferrer" target="new">See flyer</a> 
         &nbsp; | &nbsp;
         <a href={'https://www.instagram.com/' + host}>Contact {host}@ig</a>
       </div>
+      { !tags.length ? null :
+        tags.map((item,idx)=><span key={'tags-'+idx}>{item} </span> )
+      }
+      
       {
         !mapsLink ? null : 
-        <p><a rel="noreferrer" target="new" href="https://goo.gl/maps/qwzHGs5SPdo3LiEd6">Start Location</a></p>
+        <p><a rel="noreferrer" target="new" href={mapsLink}>Start Location</a></p>
       }
     </div>
   )
