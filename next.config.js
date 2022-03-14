@@ -8,20 +8,11 @@ export const nextConfig = {
   ) {
     return {
       '/': { page: '/' },
-      '/about': { page: '/about' }
+      '/about': { page: '/about' },
+      '/event-calendar':{page:'/event-calendar'}
     }
   }  
 }
 
-// module.exports = withPlugins([
-//   [optimizedImages, {
-//      config for next-optimized-images 
-//   }],
-//   reactStrictMode: true,
-//   // your other plugins here
- 
-// ]);
-
-// next.config.js
 
 

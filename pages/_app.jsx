@@ -1,25 +1,17 @@
 import '../styles/globals.css'
 import '../styles/bootstrap.min.css'
 import '../styles/calendar.css'
+import HTMLLayout from '../components/HTMLLayout'
 
 
 import Nav from '../components/Nav'
 import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <>
-      <Head>
-        <title>Race Calendar | Fixed Gear | Trackbike | Urban Alleycat Races</title>
-      </Head>
-      <div className="container">
-        <Nav />
-        <main>
-          <Component {...pageProps} />
-        </main>
-      </div>
-    </>
-  )
+
+  const getLayout = Component.getLayout || ((page) => page)
+  return getLayout(<Component {...pageProps} />)
+
 }  
 
 export default MyApp

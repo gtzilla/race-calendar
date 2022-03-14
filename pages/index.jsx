@@ -8,6 +8,7 @@ const DATE_FORMAT = 'MMMM D, YYYY';
 import _ from 'underscore';
 import Calendar from '../components/Calendar';
 import NoSsr from '../components/NoSsr';
+import HTMLLayout from '../components/HTMLLayout'
 
 
 function filterFutureForward(posts) {
@@ -81,6 +82,14 @@ export default function Home({ posts }) {
    </NoSsr>
     </>
 
+  )
+}
+
+Home.getLayout = function getLayout(page) {
+  return (
+    <HTMLLayout>
+      {page}
+    </HTMLLayout>
   )
 }
 
