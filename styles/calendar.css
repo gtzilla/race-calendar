@@ -45,7 +45,7 @@
 	background-color: #53aff4;
 		
 }
-.calendar-container-body li.active-event-on-date .current-month {
+.calendar-container-body li.active-event-on-date span {
 	color: white;
 }
 
