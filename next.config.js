@@ -13,15 +13,3 @@ export const nextConfig = {
   }  
 }
 
-// module.exports = withPlugins([
-//   [optimizedImages, {
-//      config for next-optimized-images 
-//   }],
-//   reactStrictMode: true,
-//   // your other plugins here
- 
-// ]);
-
-// next.config.js
-
-

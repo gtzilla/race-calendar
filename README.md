@@ -27,11 +27,7 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 
 ## Developing a Blog
@@ -46,19 +42,11 @@ https://blog.jetbrains.com/webstorm/2021/10/building-a-blog-with-next-js-and-mdx
 
 
 
-## Scraping with Instagram
-
-https://git.kaki87.net/KaKi87/ig-scraper
-
-TODO:  https://www.npmjs.com/package/scraper-instagram
-Needs a session id. slightly less manual..
-
-
 ## Managing This Application
 
 This site is deployed using github actions. The nextjs blog is built as a SSG (static site generator) and the files are placed into a `out` directory and then copied into the gh-pages branch. That branch, gh-pages is available via the URL race-calendar.developnyc.com
 
-New Races can be added to the `posts` folder. A YAML / frontmatter declaration block is needed. The format of those files is Markdown. Though, nextjs is very flexible and allows us to trigger React Components from Markdown, assuming they are properly passed to the MDX post via the pages/races/[slug].jsx templating engine.
+New Races can be added to the `posts` folder. A YAML / frontmatter declaration block is needed. The format of those files is Markdown (.mdx). Though, nextjs is very flexible and allows us to trigger React Components from Markdown, assuming they are properly passed to the MDX post via the pages/races/[slug].jsx templating engine.
 
 Post are very manual, as of 3/6/2022. Essentially, the user is going to grab a copy of the flyer from instagram, download that file into the `./public` folder and then create a post that adds YAML attributes for
 
