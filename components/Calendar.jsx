@@ -12,6 +12,18 @@ const dayNames = [
   'Friday',
   'Saturday'];
 
+function collectByDate(arr) {
+  const output = {}
+  arr.forEach(item=>{
+    const date = item.eventDate;
+    if(!_.has(output, date)) {
+      output[date] = [];
+    }
+    output[date].push(item);
+  });
+  return output;  
+}
+
 
 export default class Calendar extends React.PureComponent {
   constructor(props) {
@@ -45,14 +57,9 @@ export default class Calendar extends React.PureComponent {
 
   render() {
     const eventsAndUrls = this.props.events;
-    const datesHashMap = _.object(_.pluck(eventsAndUrls, 'eventDate'), eventsAndUrls);
-    // console.log("datesHashMap",datesHashMap)    
-    console.log(
-      "this.props.startDate", 
-      this.props.startDate,
-      "this.props.today", 
-      this.props.today,
-      "events",
+    const plucked = _.pluck(eventsAndUrls, 'eventDate');
+    const datesHashMap = collectByDate(eventsAndUrls);   
+    console.log("events",
       this.props.events);
 
     const today = moment();
@@ -71,6 +78,7 @@ export default class Calendar extends React.PureComponent {
     const titleHeader = today.isSame(monthStart, 'year') 
       ? monthStart.format('MMMM')
       : monthStart.format('MMMM, YYYY');
+    console.log("datesHashMap",datesHashMap)
     return (
       <>
       <div className="calendar-headline-box">
@@ -88,7 +96,7 @@ export default class Calendar extends React.PureComponent {
         </ul>
         <ul className='calendar-container-body'>
         {days.map(day=>{
-          const dayClass = day.isSame(monthStart, 'month') ? 'current-month' : ''
+          const dayClass = day.isSame(monthStart, 'month') ? 'current-month date-display-number' : 'date-display-number'
           const formatted =day.format('YYYY-MM-DD')
           const hasEvent = _.has(datesHashMap, formatted)
           if(!hasEvent) {
@@ -97,15 +105,52 @@ export default class Calendar extends React.PureComponent {
                 <span className={dayClass}>{day.format('DD')}</span>
               </li>
               )            
+          } else if(datesHashMap[formatted].length === 1) {
+            const item = _.first(datesHashMap[formatted])
+            return (
+              <Link 
+                className="calendar-full-date-click-link"
+                href={item.path}>              
+                <li key={formatted}
+                  style={{
+                    backgroundImage:'url('+item.thumbnailUrl+')',
+                    backgroundSize:'cover',
+                    backgroundRepeat:'no-repeat'
+                  }}               
+                  className='active-event-on-date'>
+
+                  
+                  <span className={dayClass}>{day.format('DD')}</span>                  
+                  
+                
+                </li>
+              </Link>
+              )            
           } else {
+            // more than one for this date!
             return (
               <li key={formatted} 
                   className='active-event-on-date'>
-                <Link href={datesHashMap[formatted].path}>
-                  <span className={dayClass}>{day.format('DD')}</span>
-                </Link>
+                <span className={dayClass}>{day.format('DD')}</span>
+                {datesHashMap[formatted].map(item=>{
+                  const imgWidth = Math.floor(100 / datesHashMap[formatted].length) + "%";
+                  return <Link href={item.path}>
+                    <div
+                      className="event-with-flyer"
+                      style={{
+                        width:imgWidth,
+                        float:'left',
+                        cursor:'pointer',
+                        backgroundImage:'url('+item.thumbnailUrl+')',
+                        backgroundSize:'cover',
+                        backgroundRepeat:'no-repeat'
+                      }}                  
+                    ></div>
+                  </Link>                  
+                })}
+
               </li>
-              )            
+              )             
           }
 
         })}

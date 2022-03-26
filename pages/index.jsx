@@ -24,10 +24,12 @@ function filterFutureForward(posts) {
 export default function Home({ posts }) {
   const filteredAndSorted = filterFutureForward(posts);
   const eventsAndUrls = filteredAndSorted.map(post=>{
-    return {
+    const base = Object.assign({}, post?.frontMatter, {
       eventDate:moment(post?.frontMatter?.date, [DATE_FORMAT]).format('YYYY-MM-DD'),
-      path:'/races/' + post.slug
-    }
+      path:'/races/' + post.slug,
+      slug:post.slug,
+    })
+    return base;
   });
   return (
     <>
