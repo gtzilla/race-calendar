@@ -32,6 +32,55 @@ function CalendarHeader(props) {
         </ul>)
 }
 
+/*
+  When only one event of the day,
+  show "full bleed"
+*/
+function FullBleedActive({item, dayClass, day}) {
+  const formatted =day.format('YYYY-MM-DD')
+  return (<Link 
+    className="calendar-full-date-click-link"
+    href={item.path} passHref>              
+    <li key={formatted}
+      style={{
+        backgroundImage:'url('+item.thumbnailUrl+')',
+        backgroundSize:'cover',
+        backgroundRepeat:'no-repeat'
+      }}               
+      className='active-event-on-date'>
+        <span className={dayClass}>{day.format('DD')}</span>
+    </li>
+  </Link>)
+}
+
+function SharedBleedActive({day, dayClass, datesHashMap, hashKey}) {
+  return (
+    <li key={hashKey} 
+        className='active-event-on-date'>
+      <span className={dayClass}>{day.format('DD')}</span>
+      {datesHashMap[hashKey].map(item=>{
+        const imgWidth = Math.floor(100 / datesHashMap[hashKey].length) + "%";
+        return <Link 
+          key={item.path}
+          href={item.path} passHref>
+          <div
+            className="event-with-flyer"
+            style={{
+              width:imgWidth,
+              float:'left',
+              cursor:'pointer',
+              backgroundImage:'url('+item.thumbnailUrl+')',
+              backgroundSize:'cover',
+              backgroundRepeat:'no-repeat'
+            }}                  
+          ></div>
+        </Link>                  
+      })}
+
+    </li>
+    )  
+}
+
 
 export default class Calendar extends React.PureComponent {
   constructor(props) {
@@ -103,48 +152,42 @@ export default class Calendar extends React.PureComponent {
               )            
           } else if(datesHashMap[formatted].length === 1) {
             const item = _.first(datesHashMap[formatted])
-            return (
-              <Link 
-                className="calendar-full-date-click-link"
-                href={item.path} passHref>              
-                <li key={formatted}
-                  style={{
-                    backgroundImage:'url('+item.thumbnailUrl+')',
-                    backgroundSize:'cover',
-                    backgroundRepeat:'no-repeat'
-                  }}               
-                  className='active-event-on-date'>
-                    <span className={dayClass}>{day.format('DD')}</span>
-                </li>
-              </Link>
-              )            
+            return <FullBleedActive 
+                      day={day} 
+                      item={item} 
+                      dayClass={dayClass} />          
           } else {
             // more than one for this date!
-            return (
-              <li key={formatted} 
-                  className='active-event-on-date'>
-                <span className={dayClass}>{day.format('DD')}</span>
-                {datesHashMap[formatted].map(item=>{
-                  const imgWidth = Math.floor(100 / datesHashMap[formatted].length) + "%";
-                  return <Link 
-                    key={item.path}
-                    href={item.path} passHref>
-                    <div
-                      className="event-with-flyer"
-                      style={{
-                        width:imgWidth,
-                        float:'left',
-                        cursor:'pointer',
-                        backgroundImage:'url('+item.thumbnailUrl+')',
-                        backgroundSize:'cover',
-                        backgroundRepeat:'no-repeat'
-                      }}                  
-                    ></div>
-                  </Link>                  
-                })}
+            return <SharedBleedActive 
+                      day={day} 
+                      dayClass={dayClass}
+                      hashKey={formatted}
+                      datesHashMap={datesHashMap} />
+            // return (
+            //   <li key={formatted} 
+            //       className='active-event-on-date'>
+            //     <span className={dayClass}>{day.format('DD')}</span>
+            //     {datesHashMap[formatted].map(item=>{
+            //       const imgWidth = Math.floor(100 / datesHashMap[formatted].length) + "%";
+            //       return <Link 
+            //         key={item.path}
+            //         href={item.path} passHref>
+            //         <div
+            //           className="event-with-flyer"
+            //           style={{
+            //             width:imgWidth,
+            //             float:'left',
+            //             cursor:'pointer',
+            //             backgroundImage:'url('+item.thumbnailUrl+')',
+            //             backgroundSize:'cover',
+            //             backgroundRepeat:'no-repeat'
+            //           }}                  
+            //         ></div>
+            //       </Link>                  
+            //     })}
 
-              </li>
-              )             
+            //   </li>
+            //   )             
           }
         })}
         </ul>

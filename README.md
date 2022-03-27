@@ -30,6 +30,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 
 
+## Ideas
+
++ filter calendar by location tag, such as "nyc"
++ show date larger, on left, similar to goog calendar agenda
+
+
 ## Developing a Blog
 
 https://blog.jetbrains.com/webstorm/2021/10/building-a-blog-with-next-js-and-mdx/
