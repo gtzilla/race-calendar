@@ -24,6 +24,14 @@ function collectByDate(arr) {
   return output;  
 }
 
+function CalendarHeader(props) {
+  return (<ul className='calendar-container-header'>
+          {dayNames.map(name=>{
+            return <li key={name}>{name.substring(0,3)}</li>
+          })}
+        </ul>)
+}
+
 
 export default class Calendar extends React.PureComponent {
   constructor(props) {
@@ -56,29 +64,21 @@ export default class Calendar extends React.PureComponent {
   }
 
   render() {
-    const eventsAndUrls = this.props.events;
-    const plucked = _.pluck(eventsAndUrls, 'eventDate');
-    const datesHashMap = collectByDate(eventsAndUrls);   
-    console.log("events",
-      this.props.events);
-
-    const today = moment();
+    const datesHashMap = collectByDate(this.props.events);
     const displayActive = moment(this.state.calendarActiveDate || this.props.startDate, ['YYYY-MM-DD']) 
     const monthStart = moment(displayActive).startOf('month').startOf('day')
-    const weekStart = moment(monthStart).startOf('month').startOf('week');
     const monthEnd = moment(displayActive).endOf('month').endOf('day');
     const endMonthWeek = moment(monthEnd).endOf('month').endOf('week');
+    const weekStart = moment(monthStart).startOf('month').startOf('week');
     const active = moment(weekStart);
-    const diff = monthEnd.diff(monthStart, 'days')
     const days = [];
     while(active.isBefore(endMonthWeek)) {
       days.push(moment(active))
       active.add(1, 'day');
     }
-    const titleHeader = today.isSame(monthStart, 'year') 
+    const titleHeader = moment().isSame(monthStart, 'year') 
       ? monthStart.format('MMMM')
       : monthStart.format('MMMM, YYYY');
-    console.log("datesHashMap",datesHashMap)
     return (
       <>
       <div className="calendar-headline-box">
@@ -89,11 +89,7 @@ export default class Calendar extends React.PureComponent {
         </ul>
       </div>
       <div className='calendar-container-box'>
-        <ul className='calendar-container-header'>
-          {dayNames.map(name=>{
-            return <li key={name}>{name.substring(0,3)}</li>
-          })}
-        </ul>
+        <CalendarHeader />
         <ul className='calendar-container-body'>
         {days.map(day=>{
           const dayClass = day.isSame(monthStart, 'month') ? 'current-month date-display-number' : 'date-display-number'
@@ -110,7 +106,7 @@ export default class Calendar extends React.PureComponent {
             return (
               <Link 
                 className="calendar-full-date-click-link"
-                href={item.path}>              
+                href={item.path} passHref>              
                 <li key={formatted}
                   style={{
                     backgroundImage:'url('+item.thumbnailUrl+')',
@@ -118,11 +114,7 @@ export default class Calendar extends React.PureComponent {
                     backgroundRepeat:'no-repeat'
                   }}               
                   className='active-event-on-date'>
-
-                  
-                  <span className={dayClass}>{day.format('DD')}</span>                  
-                  
-                
+                    <span className={dayClass}>{day.format('DD')}</span>
                 </li>
               </Link>
               )            
@@ -134,7 +126,9 @@ export default class Calendar extends React.PureComponent {
                 <span className={dayClass}>{day.format('DD')}</span>
                 {datesHashMap[formatted].map(item=>{
                   const imgWidth = Math.floor(100 / datesHashMap[formatted].length) + "%";
-                  return <Link href={item.path}>
+                  return <Link 
+                    key={item.path}
+                    href={item.path} passHref>
                     <div
                       className="event-with-flyer"
                       style={{
@@ -152,7 +146,6 @@ export default class Calendar extends React.PureComponent {
               </li>
               )             
           }
-
         })}
         </ul>
       </div>
