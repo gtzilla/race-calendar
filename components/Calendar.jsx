@@ -162,32 +162,7 @@ export default class Calendar extends React.PureComponent {
                       day={day} 
                       dayClass={dayClass}
                       hashKey={formatted}
-                      datesHashMap={datesHashMap} />
-            // return (
-            //   <li key={formatted} 
-            //       className='active-event-on-date'>
-            //     <span className={dayClass}>{day.format('DD')}</span>
-            //     {datesHashMap[formatted].map(item=>{
-            //       const imgWidth = Math.floor(100 / datesHashMap[formatted].length) + "%";
-            //       return <Link 
-            //         key={item.path}
-            //         href={item.path} passHref>
-            //         <div
-            //           className="event-with-flyer"
-            //           style={{
-            //             width:imgWidth,
-            //             float:'left',
-            //             cursor:'pointer',
-            //             backgroundImage:'url('+item.thumbnailUrl+')',
-            //             backgroundSize:'cover',
-            //             backgroundRepeat:'no-repeat'
-            //           }}                  
-            //         ></div>
-            //       </Link>                  
-            //     })}
-
-            //   </li>
-            //   )             
+                      datesHashMap={datesHashMap} />           
           }
         })}
         </ul>
