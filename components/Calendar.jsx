@@ -45,6 +45,7 @@ function FullBleedActive({item, dayClass, day}) {
       style={{
         backgroundImage:'url('+item.thumbnailUrl+')',
         backgroundSize:'cover',
+        backgroundPosition:'center center',
         backgroundRepeat:'no-repeat'
       }}               
       className='active-event-on-date'>
@@ -153,6 +154,7 @@ export default class Calendar extends React.PureComponent {
           } else if(datesHashMap[formatted].length === 1) {
             const item = _.first(datesHashMap[formatted])
             return <FullBleedActive 
+                      key={formatted}
                       day={day} 
                       item={item} 
                       dayClass={dayClass} />          
@@ -160,6 +162,7 @@ export default class Calendar extends React.PureComponent {
             // more than one for this date!
             return <SharedBleedActive 
                       day={day} 
+                      key={formatted}
                       dayClass={dayClass}
                       hashKey={formatted}
                       datesHashMap={datesHashMap} />           

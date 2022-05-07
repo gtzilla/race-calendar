@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import '../styles/bootstrap.min.css'
 import '../styles/calendar.css'
+import '../styles/race-hosts.css'
 
 
 import Nav from '../components/Nav'

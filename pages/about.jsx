@@ -12,8 +12,10 @@ const About = () => {
         throughout U.S.A, Mexico and Canada.
       </p>
 
-      <h3>Hosting a Race?</h3>
-      <p>
+      <h3>Race Hosts</h3>
+      <p>See a <Link href="/race-hosts">directory of Alleycat race hosts</Link>. 
+      From first time organizers to veterans and pioneers, a compilation of the current Alleycat organizers. Are you hosting a race? 
+
         Send races and 
         events to <ProfileLink username='brokeshutter' />. Listings your race is free.
       </p>

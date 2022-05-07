@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Button from '../../components/Button.jsx'
+import ProfileLink from '../../components/ProfileLink'
 import _ from 'underscore';
 
 
@@ -36,7 +37,7 @@ const PostPage = ({
       <div> 
         <a href={flyerUrl} rel="noreferrer" target="new">See flyer</a> 
         &nbsp; | &nbsp;
-        <a href={'https://www.instagram.com/' + host}>Contact {host}@ig</a>
+        Race Host <ProfileLink username={host} />
       </div>
       { !tags.length ? null :
         tags.map((item,idx)=><span key={'tags-'+idx}>{item} </span> )
