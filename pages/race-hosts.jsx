@@ -23,7 +23,10 @@ export default function RaceHosts({posts}) {
 			<li>Host</li>
 			<li>{today.format('YYYY')} Races</li>
 
-		{_.sortBy(hosts, item=>item).map((name,idx)=>(
+		{_.chain(hosts)
+			.sortBy(item=>item)
+			.sortBy(name=>9999-hostGrouped[name].length)
+			.map((name,idx)=>(
 			<React.Fragment key={idx}>
 				<li><ProfileLink username={name} /></li>
 				<li>{
@@ -37,7 +40,7 @@ export default function RaceHosts({posts}) {
 				}</li>
 				
 			</React.Fragment>
-			))}
+			)).value()}
 		</ul>
 		</div>
 		</>
