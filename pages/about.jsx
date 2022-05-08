@@ -8,7 +8,7 @@ const About = () => {
       <p>
         A directory of the best <Link href="https://en.wikipedia.org/wiki/Alleycat_race">Alleycat</Link> races in North America. 
         Race Calendar is developed in New York City to keep track of the 
-        best races for athletes, participants and spectators. It's great to keep informed on Alleycats
+        best races for athletes, participants and spectators. Use race calendar to keep informed on Alleycats
         throughout U.S.A, Mexico and Canada.
       </p>
 
