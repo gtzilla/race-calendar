@@ -1,4 +1,5 @@
 import ProfileLink from '../components/ProfileLink'
+import PostLink from '../components/PostLink'
 import Link from 'next/link';
 
 const About = () => {
@@ -23,6 +24,10 @@ const About = () => {
       <h3>International Races</h3>
       <p>Please get in touch with <ProfileLink username='brokeshutter' /> if 
       you are hosting a race outside the United States / North America.</p>
+
+      <p>
+        See the first flier posted to Race Calendar, <PostLink postId="CabS6zZr-9B">here</PostLink>
+      </p>
     </div>
   )
 }
