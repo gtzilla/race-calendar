@@ -41,7 +41,7 @@ export default class PostLink extends React.PureComponent {
     const postId = this.props.postId;
     let _href = 'https://instagram.com/p/' + postId + '/';
     if(this.state.iOS) {
-      _href = 'instagram://library?LocalIdentifier=' + postId
+      _href = 'instagram://post?id=' + postId
     }
     return (
       <Link href={_href} passHref>
