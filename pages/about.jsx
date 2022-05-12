@@ -6,10 +6,10 @@ const About = () => {
     <div className="mt-3">
       <p className="display-4 ">About Race Calendar</p>
       <p>
-        A directory of the best <Link href="https://en.wikipedia.org/wiki/Alleycat_race">Alleycat</Link> races in North America. 
+        A directory of the best <Link href="https://en.wikipedia.org/wiki/Alleycat_race">Alleycat</Link> races. 
         Race Calendar is developed in New York City to keep track of the 
         best races for athletes, participants and spectators. Use race calendar to keep informed on Alleycats
-        throughout U.S.A, Mexico and Canada.
+        throughout U.S.A, Europe, Mexico and Canada.
       </p>
 
       <h3>Race Hosts</h3>
@@ -20,9 +20,7 @@ const About = () => {
         events to <ProfileLink username='brokeshutter' />. Listings your race is free.
       </p>
 
-      <h3>International Races</h3>
-      <p>Please get in touch with <ProfileLink username='brokeshutter' /> if 
-      you are hosting a race outside the United States / North America.</p>
+
 
     </div>
   )
