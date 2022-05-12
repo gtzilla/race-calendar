@@ -17,7 +17,7 @@ const About = () => {
       From first time organizers to veterans and pioneers, a compilation of the current Alleycat organizers. Are you hosting a race? 
 
         Send races and 
-        events to <ProfileLink username='brokeshutter' />. Listings your race is free.
+        events to <ProfileLink username='brokeshutter' />. Listing your race is free.
       </p>
 
 
