@@ -37,7 +37,12 @@ const PostPage = ({
       <div> 
         <a href={flyerUrl} rel="noreferrer" target="new">See flyer</a> 
         &nbsp; | &nbsp;
-        Race Host <ProfileLink username={host} />
+        Race Host &nbsp; 
+        { _.isArray(host) ? 
+          host.map(name=><span><ProfileLink username={name} /> </span>  ) 
+          : <span><ProfileLink username={host} /></span>
+        }
+        
       </div>
       { !tags.length ? null :
         tags.map((item,idx)=><span key={'tags-'+idx}>{item} </span> )

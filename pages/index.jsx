@@ -8,6 +8,7 @@ const DATE_FORMAT = 'MMMM D, YYYY';
 import _ from 'underscore';
 import Calendar from '../components/Calendar';
 import NoSsr from '../components/NoSsr';
+import ProfileLink from '../components/ProfileLink'
 
 
 function filterFutureForward(posts) {
@@ -64,8 +65,8 @@ export default function Home({ posts }) {
       <div>
         <h1>No Upcoming Alleycats</h1>   
         <p>Let&#39;s change that together. 
-          Share event details with <a href="https://instagram.com/brokeshutter/">brokeshutter@ig</a> to 
-          see your race published here.
+          Share event details with <ProfileLink username='brokeshutter' /> to 
+          see your race promoted here.
         </p>
       </div>
     }
