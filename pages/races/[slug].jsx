@@ -39,7 +39,7 @@ const PostPage = ({
         &nbsp; | &nbsp;
         Race Host &nbsp; 
         { _.isArray(host) ? 
-          host.map(name=><span><ProfileLink username={name} /> </span>  ) 
+          host.map((name, idx)=><span key={idx}><ProfileLink username={name} /> </span>  ) 
           : <span><ProfileLink username={host} /></span>
         }
         
