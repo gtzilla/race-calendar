@@ -9,38 +9,52 @@ import React from 'react'
 import ProfileLink from '../components/ProfileLink';
 const DATE_FORMAT = 'MMMM D, YYYY';
 
+
+function countRaces(races) {
+	const mapped = {}
+	races.forEach(item=>{
+		if(!_.isArray(item.host)) {
+			if(!_.has(mapped, item.host)) {
+				mapped[item.host] = {events:[item.date]};
+			} else {
+				mapped[item.host].events.push(item.date)
+			}
+		} else {
+			const hosts = item.host;
+			hosts.forEach(host=>{
+				if(!_.has(mapped, host)) {
+					mapped[host] = {events:[item.date]};
+				} else {
+					mapped[host].events.push(item.date)
+				}
+			});
+		}
+	});
+	return mapped;
+}
+
 export default function RaceHosts({posts}) {
-	const purePost = _.pluck(posts, 'frontMatter')
-	const hostGrouped = _.groupBy(purePost, 'host')
-	// console.log("hostGrouped",hostGrouped)
-	const hosts = _.keys(hostGrouped);
+	const purePost = _.pluck(posts, 'frontMatter');
+	const raceCounts = countRaces(purePost);
 	const today = moment();
 	return (
 		<>
 		<div className="mt-3">
-		<h3>Race Hosts Glossary</h3>
+		<h3>Race Hosts Leaderboard</h3>
 		<ul className="race-hosts-grid">
 			<li>Host</li>
-			<li>{today.format('YYYY')} Races</li>
+			<li>Alleycat Races</li>
 
-		{_.chain(hosts)
-			.sortBy(item=>item)
-			.sortBy(name=>9999-hostGrouped[name].length)
-			.map((name,idx)=>(
-			<React.Fragment key={idx}>
-				<li><ProfileLink username={name} /></li>
-				<li>{
-					_.chain(hostGrouped[name]).filter(item=>{
-						const _date = moment(item.date, [DATE_FORMAT]);
-						return _date.isSame(today, 'year')
-					}).reduce((memo, num)=>{
-						memo += 1;
-						return memo;
-					}, 0).value()
-				}</li>
-				
-			</React.Fragment>
-			)).value()}
+			{_.chain(_.keys(raceCounts))
+				.sortBy(item=>item)
+				.sortBy(name=>9999-raceCounts[name].events.length)
+				.map((name,idx)=>(
+					<React.Fragment key={idx}>
+						<li><ProfileLink username={name} /></li>
+						<li>{raceCounts[name].events.length}</li>
+					</React.Fragment>
+				))	
+				.value()}
 		</ul>
 		</div>
 		</>
