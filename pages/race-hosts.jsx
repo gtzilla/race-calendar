@@ -20,8 +20,7 @@ function countRaces(races) {
 				mapped[item.host].events.push(item.date)
 			}
 		} else {
-			const hosts = item.host;
-			hosts.forEach(host=>{
+			item.host.forEach(host=>{
 				if(!_.has(mapped, host)) {
 					mapped[host] = {events:[item.date]};
 				} else {
