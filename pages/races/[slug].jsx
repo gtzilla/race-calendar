@@ -14,6 +14,7 @@ const PostPage = ({
     date,
     coverImage, 
     flyerUrl,
+    flyerArtist,
     host,
     mapsLink,
     tags
@@ -52,6 +53,9 @@ const PostPage = ({
         !mapsLink ? null : 
         <p><a rel="noreferrer" target="new" href={mapsLink}>Start Location</a></p>
       }
+      {flyerArtist?
+        <div>Artwork by <ProfileLink username={flyerArtist} /></div>
+        :null}
     </div>
   )
 }
