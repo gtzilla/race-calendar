@@ -8,6 +8,19 @@ import ProfileLink from '../../components/ProfileLink'
 import _ from 'underscore';
 
 
+function showFlyerArtist(flyerArtist) {
+  if(flyerArtist && _.isArray(flyerArtist)) {
+    return <div> Artwork by <ul>{flyerArtist.map((item,idx)=>{
+      return <li key={idx}><ProfileLink username={item} /></li>  
+    })}
+    </ul>
+    </div>
+  } else if(flyerArtist) {
+    return <div>Artwork by <ProfileLink username={flyerArtist} /></div>  
+  }
+  return null
+}
+
 const PostPage = ({ 
   frontMatter: { 
     title, 
@@ -53,9 +66,7 @@ const PostPage = ({
         !mapsLink ? null : 
         <p><a rel="noreferrer" target="new" href={mapsLink}>Start Location</a></p>
       }
-      {flyerArtist?
-        <div>Artwork by <ProfileLink username={flyerArtist} /></div>
-        :null}
+      {showFlyerArtist(flyerArtist)}
     </div>
   )
 }
